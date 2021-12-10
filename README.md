@@ -1,1 +1,1 @@
-# django-twitter-project-Public
+# django-twitter-project
