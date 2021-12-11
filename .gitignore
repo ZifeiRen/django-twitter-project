@@ -7,12 +7,14 @@ thrift-0.14.2.tar.gz
 thrift-0.14.2/
 
 # Byte-compiled / optimized / DLL files
+accounts/api/__pycache__/serializers.cpython-36.pyc
+accounts/api/__pycache__/views.cpython-36.pyc
+twitter/__pycache__/urls.cpython-36.pyc
+
 __pycache__/
 *.py[cod]
 *$py.class
-twitter/__pycache__/urls.cpython-36.pyc
-accounts/api/__pycache__/views.cpython-36.pyc
-accounts/api/__pycache__/serializers.cpython-36.pyc
+
 # C extensions
 *.so
 
