@@ -10,7 +10,9 @@ thrift-0.14.2/
 __pycache__/
 *.py[cod]
 *$py.class
-
+twitter/__pycache__/urls.cpython-36.pyc
+accounts/api/__pycache__/views.cpython-36.pyc
+accounts/api/__pycache__/serializers.cpython-36.pyc
 # C extensions
 *.so
 
