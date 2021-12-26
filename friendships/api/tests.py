@@ -46,7 +46,6 @@ class FriendshipApiTests(TestCase):
         # follow 成功
         response = self.dongxie_client.post(url)
         self.assertEqual(response.status_code, 201)
-        print(response.data)
         self.assertEqual('created_at' in response.data, True)
         self.assertEqual('user' in response.data, True)
         self.assertEqual(response.data['user']['id'], self.linghu.id)
