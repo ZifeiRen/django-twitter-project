@@ -10,6 +10,8 @@ class TestCase(DjangoTestCase):
 
     @property
     def anonymous_client(self):
+        # instance level 的cache
+        # 如果同一个self进来，不会生成新的client
         if hasattr(self, '_anonymous_client'):
             return self._anonymous_client
         self._anonymous_client = APIClient()
