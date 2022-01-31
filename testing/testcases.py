@@ -7,9 +7,13 @@ from comments.models import Comment
 from newsfeeds.models import NewsFeed
 from tweets.models import Tweet
 from likes.models import Like
+from django.core.cache import caches
 
 
 class TestCase(DjangoTestCase):
+
+    def clear_cache(self):
+        caches['testing'].clear()
 
     @property
     def anonymous_client(self):
