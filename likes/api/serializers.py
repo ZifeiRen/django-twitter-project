@@ -8,7 +8,7 @@ from tweets.models import Tweet
 
 
 class LikeSerializer(serializers.ModelSerializer):
-    user = UserSerializerForLike()
+    user = UserSerializerForLike(source='cached_user')
 
     class Meta:
         model = Like
@@ -33,10 +33,11 @@ class BaseLikeSerializerForCreateAndCancel(serializers.ModelSerializer):
     def validate(self, data):
         model_class = self._get_model_class(data)
         if model_class is None:
-            raise ValidationError({'content_type': 'Content type does not exist'})
+            raise ValidationError(
+                {'content_type': 'Content type does not exist'})
         liked_object = model_class.objects.filter(id=data['object_id']).first()
         if liked_object is None:
-            raise ValidationError({'object_id' : 'Object does not exist'})
+            raise ValidationError({'object_id': 'Object does not exist'})
         return data
 
 
