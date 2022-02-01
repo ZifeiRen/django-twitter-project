@@ -1,10 +1,9 @@
-from accounts.services import UserServices
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.contrib.auth.models import User
-
 from likes.models import Like
 from tweets.models import Tweet
+from utils.memcached_helper import MemcachedHelper
 
 
 class Comment(models.Model):
@@ -39,4 +38,5 @@ class Comment(models.Model):
 
     @property
     def cached_user(self):
-        return UserServices.get_user_through_cache(self.user_id)
+        return MemcachedHelper.get_object_through_cache(User, self.user_id)
+
