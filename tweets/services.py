@@ -28,6 +28,7 @@ class TweetService(object):
     @classmethod
     def push_tweet_to_cache(cls, tweet):
         # Queryset is Lazy loading
-        queryset = Tweet.objects.filter(user_id=tweet.user_id).order_by('-created-at')
+        queryset = Tweet.objects.filter(user_id=tweet.user_id).order_by(
+            '-created_at')
         key = USER_TWEETS_PATTERN.format(user_id=tweet.user_id)
         RedisHelper.push_object(key, tweet, queryset)
