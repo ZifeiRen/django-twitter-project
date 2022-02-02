@@ -8,6 +8,7 @@ from tweets.api.serializers import (
 )
 from tweets.models import Tweet
 from newsfeeds.services import NewsFeedService
+from tweets.services import TweetService
 from utils.decorators import required_params
 from utils.paginations import EndlessPagination
 
@@ -26,7 +27,7 @@ class TweetViewSet(viewsets.GenericViewSet):
     def list(self, request):
         # 实际上返回个字符串，user_id是int，但是支持传进个string类型，django会自动进行类型转换
         user_id = request.query_params['user_id']
-        tweets = Tweet.objects.filter(user_id=user_id).order_by('-created_at')
+        tweets = TweetService.get_cached_tweets(user_id)
         # many = True 返回一个list of dict。每个dictionary是tweet的一个hash表的集合
         tweets = self.paginate_queryset(tweets)
         serializer = TweetSerializer(
