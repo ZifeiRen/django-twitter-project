@@ -46,5 +46,5 @@ class Like(models.Model):
 
 
 pre_delete.connect(decr_likes_count, sender=Like)
-post_save.connect(decr_likes_count, sender=Like)
+post_save.connect(incr_likes_count, sender=Like)
 
