@@ -10,8 +10,11 @@ class NewsFeedViewSet(viewsets.GenericViewSet):
     permission_classes = (IsAuthenticated,)
     pagination_class = EndlessPagination
 
+    def get_queryset(self):
+        return NewsFeed.objects.filter(user=self.request.user)
+
     def list(self, request):
-        cached_newsfeeds = NewsFeedService.get_cache_newsfeeds(request.user.id)
+        cached_newsfeeds = NewsFeedService.get_cached_newsfeeds(request.user.id)
         page = self.paginator.paginate_cached_list(cached_newsfeeds, request)
         # page is None means the data didn't in cache, it need to get through db
         if page is None:
