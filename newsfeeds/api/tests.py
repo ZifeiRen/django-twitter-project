@@ -183,7 +183,7 @@ class NewsFeedApiTests(TestCase):
         newsfeeds = newsfeeds[::-1]
 
         # only cached list_limit objects
-        cached_newsfeeds = NewsFeedService.get_cache_newsfeeds(self.linghu.id)
+        cached_newsfeeds = NewsFeedService.get_cached_newsfeeds(self.linghu.id)
         self.assertEqual(len(cached_newsfeeds), list_limit)
         queryset = NewsFeed.objects.filter(user=self.linghu)
         self.assertEqual(queryset.count(), list_limit + page_size)
